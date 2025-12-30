@@ -1,11 +1,29 @@
 package com.example.jrl1.entity;
 
-public class journalentry {
+import org.bson.types.ObjectId;
+import org.springframework.cglib.core.Local;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-    private long id;
+import java.time.LocalDateTime;
+import java.util.Date;
+
+@Document(collection="journal_entries")
+public class journalentry {
+    @Id
+    private ObjectId id;
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
     private String title;
     private String content;
-
+    private LocalDateTime date;
     public String getTitle() {
         return title;
     }
@@ -22,11 +40,11 @@ public class journalentry {
         this.title = title;
     }
 
-    public long getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 }
